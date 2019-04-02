@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888/
+      name: ele-bootstrap
+      label: master
+      profile: dev

@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenpeixin.cloud.ele.mapper.GoodMapper">
+
+    <resultMap id="goods" type="com.chenpeixin.cloud.ele.vo.GoodAndTypeVo">
+        <id column="type_id" property="typeId"></id>
+        <result column="type_name" property="name"></result>
+        <collection property="foods" ofType="com.chenpeixin.cloud.ele.vo.GoodVo">
+            <id column="id" property="id"></id>
+            <result column="name" property="name"></result>
+            <result column="shop_id" property="shopId"></result>
+            <result column="price" property="price"></result>
+            <result column="old_price" property="oldPrice"></result>
+            <result column="description" property="description"></result>
+            <result column="sell_count" property="sellCount"></result>
+            <result column="rating" property="rating"></result>
+            <result column="info" property="info"></result>
+            <result column="icon" property="icon"></result>
+            <result column="image" property="image"></result>
+            <collection property="ratings" ofType="com.chenpeixin.cloud.ele.vo.RateVo">
+                <id column="id" property="id"></id>
+                <result column="name" property="userName"></result>
+                <result column="price" property="rateTime"></result>
+                <result column="old_price" property="rateType"></result>
+                <result column="description" property="text"></result>
+                <result column="description" property="avatar"></result>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="query" resultMap="goods">
+        select g.id, g.shop_id, g.type_id, g.name, g.price, g.old_price, g.description, g.sell_count, g.rating, g.info,
+         g.icon, g.image,t.id type_id,t.name type_name,r.id rate_id,r.user_name,r.rate_time,
+         r.rate_type,r.text,r.avatar
+          from t_good g left join t_type t on t.id=g.type_id left join t_ratings r
+          on g.id = r.good_id
+    </select>
+
+    <select id="idList" resultType="java.lang.String">
+        select id from t_good;
+    </select>
+</mapper>

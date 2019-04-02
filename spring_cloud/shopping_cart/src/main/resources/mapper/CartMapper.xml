@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenpeixin.cloud.shopping_cart.mapper.CartMapper">
+
+    <select id="existsCart" resultType="java.lang.String">
+        select id from t_cart where shop_id = #{shopId} and open_id = #{openId}
+    </select>
+
+    <insert id="createCart">
+        insert into t_cart (id,shop_id,open_id) values (#{id},#{shopId},#{openId})
+    </insert>
+
+    <update id="updateCount">
+        update t_cart_info set good_count = #{count} where cart_id = #{cartId} and good_id = #{goodId}
+    </update>
+
+    <insert id="addCart">
+        insert into t_cart_info (id,cart_id,good_id,good_count) values (#{id},#{cartId},#{goodId},#{count})
+    </insert>
+
+    <select id="existsCartInfo" resultType="java.lang.Integer">
+        select count(1) from t_cart_info where cart_id = #{cartId} and good_id = #{goodId}
+    </select>
+
+    <select id="queryCartInfo" resultType="CartVo">
+        select good_id id,good_count count from t_cart_info where cart_id = #{cartId}
+    </select>
+
+</mapper>

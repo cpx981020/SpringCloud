@@ -1,0 +1,11 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenpeixin.cloud.ele.mapper.RateMapper">
+
+   <insert id="add">
+       INSERT INTO t_ratings
+        (id, shop_id, good_id, user_name, rate_time, rate_type, text, avatar)
+        VALUES (#{rate.id},#{rate.shopId}, #{rate.goodId}, #{rate.userName}, #{rate.rateTime}, #{rate.rateType}, #{rate.text}, #{rate.avatar})
+   </insert>
+</mapper>

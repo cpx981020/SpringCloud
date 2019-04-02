@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+#         git仓库地址
+          uri: https://github.com/cpx981020/spring_cloud_config
+#         配置文件存放位置
+          search-paths: /config
+#         Cannot clone or checkout repository:表示没有权限，需要设置用户名密码
+          username: cpx981020
+          password: Chenpeixin123
+      label: master
+server:
+# 只能是8888端口，要修改可以再bootstrap.properties修改，bootstrap是启动的意思，并且有限加载
+  port: 8888
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/

@@ -1,0 +1,10 @@
+# 从git云配置中拉取服务配置文件
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888/
+      name: eureka-bootstrap
+      #     分支
+      label: master
+      #     环境：生产、开发、测试，即配置文件-dev/-prod/-test
+      profile: dev

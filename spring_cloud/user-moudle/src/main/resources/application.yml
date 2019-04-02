@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888/
+      name: user-model-bootstrap
+      #     分支
+      label: master
+      #     环境：生产、开发、测试，即配置文件-dev/-prod/-test
+      profile: dev
